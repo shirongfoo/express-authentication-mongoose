@@ -1,4 +1,5 @@
 var mongoose = require('mongoose')
+var app = require('../index');
 var sleep = 10
 var connected = false
 

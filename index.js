@@ -24,8 +24,17 @@ app.get('/profile', function(req, res) {
   res.render('profile');
 });
 
-app.use('/auth', require('./controllers/auth'));
+var authController = require('./controllers/auth')
+app.use('/', authController);
 
-var server = app.listen(process.env.PORT || 3000);
+//you can use var staticPagesController = require(./controllers/staticPages)
+//app.use('/', staticPagesController)
+
+var server
+if(process.env.NODE_ENV === 'test'){
+  server = app.listen(process.env.PORT || 4000)
+}else {
+  server = app.listen(process.env.port || 3000)
+}
 
 module.exports = server;
